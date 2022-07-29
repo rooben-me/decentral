@@ -1,12 +1,7 @@
 import { Fragment, useState } from "react";
-import { Dialog, Menu, Transition } from "@headlessui/react";
+import { Dialog, Transition } from "@headlessui/react";
 import {
-  CalendarIcon,
-  ChartBarIcon,
-  FolderIcon,
   HomeIcon,
-  InboxIcon,
-  UsersIcon,
   XIcon,
   ChevronDownIcon,
   ChevronUpIcon,
@@ -23,10 +18,11 @@ const NavElements = () => {
 
   return (
     <nav className="flex-1 px-2 pb-4 space-y-2">
-      <a
+      <button
         onClick={() => setOpenChild(!openChild)}
-        className="bg-gray-100 hover:bg-gray-200 text-gray-900 cursor-pointer group flex items-center px-3 py-3 text-sm font-medium rounded-md"
+        className="border border-grey-3 hover:border-grey-4 text-gray-900 cursor-pointer group flex items-center px-3 py-3 text-sm font-medium rounded-md overflow-hidden w-full focus:ring-2 focus:ring-offset-2 focus:ring-geekBlue relative"
       >
+        <span className="h-full w-1 bg-geekBlue-6 absolute left-0" />
         <span className="flex w-full justify-between">
           <span className="flex gap-2 items-center">
             <HomeIcon className="text-gray-500 w-5 h-5" />
@@ -38,7 +34,7 @@ const NavElements = () => {
             <ChevronDownIcon className="w-4 h-4" />
           )}
         </span>
-      </a>
+      </button>
       <Transition.Root show={openChild} as={Fragment}>
         <Transition.Child
           as={Fragment}
@@ -50,7 +46,7 @@ const NavElements = () => {
           leaveTo="-translate-y-2 opacity-0"
         >
           <div className="flex flex-col gap-2">
-            <a className="ml-4 bg-gray-50 text-gray-900 group flex items-center px-3 py-3 text-sm font-medium rounded-md">
+            <a className="ml-4 border border-grey-2 text-gray-900 group flex items-center px-3 py-3 text-sm font-medium rounded-md">
               <span className="flex w-full justify-between">
                 <span className="flex items-center gap-2">
                   <LinkIcon className="text-gray-500 w-5 h-5" />
@@ -58,7 +54,7 @@ const NavElements = () => {
                 </span>
               </span>
             </a>
-            <a className="ml-4 bg-gray-50 text-gray-900 group flex items-center px-3 py-3 text-sm font-medium rounded-md">
+            <a className="ml-4 border border-grey-2 text-gray-900 group flex items-center px-3 py-3 text-sm font-medium rounded-md">
               <span className="flex w-full justify-between">
                 <span className="flex items-center gap-2">
                   <CogIcon className="text-gray-500 w-5 h-5" />
