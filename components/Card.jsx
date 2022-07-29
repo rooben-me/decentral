@@ -131,12 +131,12 @@ const Card = () => {
         </Droppable>
       </DragDropContext>
 
-      <div className="">
-        <h1 className="text-2xl font-semibold text-gray-900 mt-16">
+      <div>
+        <h1 className="text-2xl font-semibold text-grey-9 mt-16">
           Popular Apps
         </h1>
 
-        <div className="flex gap-8 mt-6 overflow-x-auto items-center">
+        <div className="flex gap-8 overflow-x-auto items-center">
           {popularAppsInfo.map(({ name, logo }) => {
             return (
               <button
