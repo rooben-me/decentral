@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
+import { Tooltip } from "@mantine/core";
+import DragHandleIcon from "./icons/DragHandleIcon";
+
 const Card = () => {
   const IMAGE_URL = "/images/apps_logo/";
 
@@ -89,9 +92,18 @@ const Card = () => {
                       <li
                         ref={provided.innerRef}
                         {...provided.draggableProps}
-                        {...provided.dragHandleProps}
                         className="rounded-lg border flex flex-col items-center justify-center border-gray-200 p-4 lg:p-12 relative"
                       >
+                        <div className="flex items-center justify-between absolute inset-x-4 top-4">
+                          <Tooltip label="active">
+                            <span className="bg-green-5 ring-2 ring-green-3 w-2 h-2 rounded-full" />
+                          </Tooltip>
+                          <Tooltip label="Drag to re-order">
+                            <div {...provided.dragHandleProps}>
+                              <DragHandleIcon />
+                            </div>
+                          </Tooltip>
+                        </div>
                         <div className="rounded-full h-16 w-16 lg:h-48 lg:w-48 p-4 lg:p-12 border border-gray-200 relative">
                           <img
                             src={`${IMAGE_URL}${logo}`}
