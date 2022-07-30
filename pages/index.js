@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { MenuAlt2Icon } from "@heroicons/react/outline";
 
 import SideBar from "../components/SideBar";
-const Card = dynamic(import("../components/Card"));
+const DashBoard = dynamic(import("../components/Dashboard"));
 
 export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -39,13 +39,13 @@ export default function Home() {
 
           <main className="flex-1">
             <div className="py-6">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+              <div className="px-4 sm:px-6 md:px-8">
                 <h1 className="text-2xl mt-8 mb-8 font-semibold text-grey-9">
                   Connected Apps
                 </h1>
               </div>
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-                <div>{winReady ? <Card /> : null}</div>
+              <div className="mx-auto px-4 sm:px-6 md:px-8">
+                <div>{winReady ? <DashBoard /> : null}</div>
               </div>
             </div>
           </main>

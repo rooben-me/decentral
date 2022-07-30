@@ -4,7 +4,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { Tooltip } from "@mantine/core";
 import DragHandleIcon from "./icons/DragHandleIcon";
 
-const Card = () => {
+const DashBoard = () => {
   const IMAGE_URL = "/images/apps_logo/";
 
   const recentApps = [
@@ -83,16 +83,18 @@ const Card = () => {
             <ul
               {...provided.droppableProps}
               ref={provided.innerRef}
-              className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-8"
+              className="flex overflow-x-auto gap-4 lg:gap-8 relative pb-4"
             >
               {appCard.map(({ name, logo }, index) => {
                 return (
                   <Draggable key={name} draggableId={name} index={index}>
-                    {(provided) => (
+                    {(provided, snapshot) => (
                       <li
                         ref={provided.innerRef}
                         {...provided.draggableProps}
-                        className="rounded-lg border flex flex-col items-center justify-center border-gray-200 p-4 lg:p-12 relative"
+                        className={`rounded-lg border min-w-[240px] flex flex-col items-center justify-center bg-white border-gray-200 p-4 lg:p-8 relative transition-shadow ease-in-out ${
+                          snapshot.isDragging && "shadow-lg"
+                        }`}
                       >
                         <div className="flex items-center justify-between absolute inset-x-4 top-4">
                           <Tooltip label="active">
@@ -104,7 +106,7 @@ const Card = () => {
                             </div>
                           </Tooltip>
                         </div>
-                        <div className="rounded-full h-16 w-16 lg:h-48 lg:w-48 p-4 lg:p-12 border border-gray-200 relative">
+                        <div className="rounded-full h-16 w-16 p-4 lg:p-4 border border-gray-200 relative">
                           <img
                             src={`${IMAGE_URL}${logo}`}
                             className="object-contain w-full h-full"
@@ -136,25 +138,26 @@ const Card = () => {
           Popular Apps
         </h1>
 
-        <div className="flex gap-8 overflow-x-auto items-center">
+        <div className="flex gap-8 overflow-x-auto items-center pb-4">
           {popularAppsInfo.map(({ name, logo }) => {
             return (
-              <button
-                className="flex flex-col items-center justify-center p-8 transition-all ease-in-out rounded-lg border border-transparent hover:border-gray-200 active:border-gray-300"
-                onClick={() => addAppCard(name, logo)}
-                key={name}
-              >
-                <div className="rounded-full h-24 w-24 p-4 border border-gray-200 relative">
-                  <img
-                    src={`${IMAGE_URL}${logo}`}
-                    className="object-contain w-full h-full"
-                    alt=""
-                  />
-                </div>
-                <span className="text-grey-7 w-full truncate text-center mt-4">
-                  {name}
-                </span>
-              </button>
+              <Tooltip position="bottom" key={name} label="Click to Connect">
+                <button
+                  className="flex flex-col items-center justify-center p-8 transition-all ease-in-out rounded-lg border border-transparent hover:border-gray-200 active:border-gray-300"
+                  onClick={() => addAppCard(name, logo)}
+                >
+                  <div className="rounded-full h-24 w-24 p-4 border border-gray-200 relative">
+                    <img
+                      src={`${IMAGE_URL}${logo}`}
+                      className="object-contain w-full h-full"
+                      alt=""
+                    />
+                  </div>
+                  <span className="text-grey-7 w-full truncate text-center mt-4">
+                    {name}
+                  </span>
+                </button>
+              </Tooltip>
             );
           })}
         </div>
@@ -163,4 +166,4 @@ const Card = () => {
   );
 };
 
-export default Card;
+export default DashBoard;
